@@ -3,7 +3,7 @@ package quiz.madlibs
 import java.util.regex.{Pattern, Matcher}
 import scala.util.matching.Regex;
 
-object regextest extends Application {
+object madlibs extends Application {  
   var msg = "Our favorite language is ((gem:a gemstone)). We think ((gem)) is better than ((a gemstone))" +
   "I ((a verb, past tense)) to the sandwich shop across the street for lunch " +
 " yesterday. I go there at least ((a number)) times a week. They have the best"+
@@ -30,14 +30,17 @@ object regextest extends Application {
       msg = msg.replaceFirst(reg1.toString, input)
       msg = msg.replaceAll("\\(\\(" + test.substring(2, test.indexOf(":")) + "\\)\\)", input)
   }
-  val reg = new Regex("\\(\\([^(\\)\\))]*\\)\\)")
-  while(true) {
-     println(reg.findFirstIn(msg) match {
-          case None => println(msg);System.exit(0)
-          case Some(x) =>"Enter " +  x.substring(2, x.length-2)
-      })
-     msg = msg.replaceFirst(reg.toString, Console.readLine)
-  }
+
+    val reg = new Regex("\\(\\([^(\\)\\))]*\\)\\)")
+    var condition  = true;
+    while(condition) {
+       reg.findFirstIn(msg) match {
+            case None => condition = false;println(msg)
+            case Some(x) => {println("Enter " +  x.substring(2, x.length-2))
+                             msg = msg.replaceFirst(reg.toString, Console.readLine)}
+        }
+       
+    }
 
 
 }
