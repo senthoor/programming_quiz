@@ -67,15 +67,13 @@ end
 def enlarge_number(number, factor)
   number.each {|x| puts enlarge_token(x, factor)}
 end
-
-if (ARGV[1] == '-s') then
-  factor = ARGV[2]
-  digits = ARGV[3]
+@digits = ""
+@factor = 2;
+if (ARGV[0] == '-s') then
+  @factor = ARGV[1].to_i
+  @digits = ARGV[2]
 else
-  factor = 2
-  digits = ARGV[2]
+  @digits = ARGV[2]
 end
-    
-    
-enlarge_number(@numbers[2],8)
-                           
+
+@digits.each_char {|x| enlarge_number(@numbers[x.to_i],@factor)}
