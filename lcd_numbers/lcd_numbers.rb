@@ -1,5 +1,10 @@
 
-numbers = [
+@numbers = [
+[ " - ",
+  "| |",
+  "   ",
+  "| |",
+  " - " ],
 [ "   ",
   "  |",
   "   ",
@@ -46,7 +51,7 @@ numbers = [
   "  |",
   " - " ]]  
   
-def enlarge (token,factor)
+def enlarge_token (token,factor)
     key = String.new(token) 
     for i in (1..factor-1) 
       if key.strip == '-' then
@@ -58,6 +63,19 @@ def enlarge (token,factor)
     end
     return token
 end
+
+def enlarge_number(number, factor)
+  number.each {|x| puts enlarge_token(x, factor)}
+end
+
+if (ARGV[1] == '-s') then
+  factor = ARGV[2]
+  digits = ARGV[3]
+else
+  factor = 2
+  digits = ARGV[2]
+end
     
-numbers.each {|x| x.each { |y|  puts enlarge(y,8)}}
+    
+enlarge_number(@numbers[2],8)
                            
