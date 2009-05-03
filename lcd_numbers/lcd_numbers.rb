@@ -67,6 +67,7 @@ end
 def enlarge_number(number, factor)
   number.each {|x| puts enlarge_token(x, factor)}
 end
+
 @digits = ""
 @factor = 2;
 if (ARGV[0] == '-s') then
