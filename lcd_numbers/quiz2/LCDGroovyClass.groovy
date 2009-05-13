@@ -10,7 +10,7 @@ class LCDGroovyClass {
 
     static def patterns = [];
     static String value = "0123456789"
-    static int size = 5
+    static int size = 1
     static def valueArray = []
 
     static void init() {
@@ -28,22 +28,7 @@ class LCDGroovyClass {
         value.each {digit -> valueArray << Integer.parseInt(digit)}
     }
 
-    //creating first line
-    static String createFirstLine() {
-        StringBuffer firstLine = new StringBuffer();
-        for (i in 1..valueArray.size()) {
-            firstLine.append "  "
-            for (j in 1..size) {
-                firstLine.append patterns.get(valueArray[i-1])[1]
-            }
-            firstLine.append " "
-        }
-        firstLine.append "\n"
-
-        return firstLine.toString()
-    }
-
-    static String createSecondThirdLine(int start){
+    static String createLine(int start){
         StringBuffer result = new StringBuffer()
         for (j in 1..size) {
 
@@ -75,7 +60,7 @@ class LCDGroovyClass {
 
     static void main(args){
         init()
-        println createFirstLine() + createSecondThirdLine(3) + createSecondThirdLine(6)
+        println createLine(0) + createLine(3) + createLine(6)
     }
 
 }
